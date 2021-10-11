@@ -15,13 +15,26 @@ library(tidyverse)
 library(metajam)
 library(here)
 ```
+## Retieve data using an API
 
-```{r}
 
-set_file_path = "~/Documents/MEDS/term_2/eds213/groupproject/eds213_group8"
+**Note! If you have not run this Rmd on your local computer, run this code chunk initially!**
+```{r Use Metajam to Download the Data, eval = FALSE}
+
+set_file_path = "~/Documents/MEDS/term_2/eds213/groupproject/eds213_group8/data"
 
 download_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/1/406b624e7e71dcd400f677eb70cc8bde", path = set_file_path)
 
-file.exists("eds213_group8")
+
 ```
+
+```{r}
+data_list <- read_d1_files(folder_path = "data")
+
+#Get the dataframes 
+
+
+```
+
+
 
