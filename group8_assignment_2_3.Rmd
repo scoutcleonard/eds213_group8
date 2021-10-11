@@ -21,9 +21,9 @@ library(here)
 **Note! If you have not run this Rmd on your local computer, run this code chunk initially!**
 ```{r Use Metajam to Download the Data, eval = FALSE}
 
-set_file_path = "~/Documents/MEDS/term_2/eds213/groupproject/eds213_group8/data"
+#set_file_path = "~/Documents/MEDS/term_2/eds213/groupproject/eds213_group8/data"
 
-download_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/1/406b624e7e71dcd400f677eb70cc8bde", path = set_file_path)
+download_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/1/406b624e7e71dcd400f677eb70cc8bde", path = ".")
 
 
 ```
