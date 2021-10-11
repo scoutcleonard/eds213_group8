@@ -29,12 +29,19 @@ download_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/
 ```
 
 ```{r}
-data_list <- read_d1_files(folder_path = "data")
-
 #Get the dataframes 
+data_all <- read_d1_files(folder_path = "https_pasta.lternet.edu_package_metadata_eml_edi_998_1__All_Lead_Risk_Factors__csv")
 
+attribute_metadata <- data_all$attribute_metadata
+
+summary_metadata <- data_all$summary_metadata
+
+data <- data_all$data
 
 ```
 
+In exploring DataONE, we were interested in environmental justice issues; we looked for data that may be able to answer an environmental justice question. We found that there were several datasets describing environmental and health conditions of Philadelphia neighborhoods. This dataset is one example. Specifically, it gives demographic information in addition to various potential lead poisoning risk factors. 
+
+We downloaded the data and metadata using `metajam`. 
 
 
