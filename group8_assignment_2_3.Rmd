@@ -18,12 +18,10 @@ library(here)
 ## Retieve data using an API
 
 
-**Note! If you have not run this Rmd on your local computer, run this code chunk initially!**
+**Note! If you have not run this Rmd on your local computer, run this code chunk initially to download data that is included in .gitignore (aka not stored on GitHub)!**
 ```{r Use Metajam to Download the Data, eval = FALSE}
 
-#set_file_path = "~/Documents/MEDS/term_2/eds213/groupproject/eds213_group8/data"
-
-download_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/1/406b624e7e71dcd400f677eb70cc8bde", path = ".")
+ownload_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/1/406b624e7e71dcd400f677eb70cc8bde", path = ".")
 
 
 ```
