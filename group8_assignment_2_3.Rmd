@@ -1,0 +1,27 @@
+---
+title: "Assignment 2.3"
+author: "Scout Leonard, Clarissa Boyajian, Alex Yousefivand"
+date: "10/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE, echo = FALSE}
+library(dataRetrieval)
+library(tidyverse)
+library(metajam)
+library(here)
+```
+
+```{r}
+
+set_file_path = "~/Documents/MEDS/term_2/eds213/groupproject/eds213_group8"
+
+download_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/1/406b624e7e71dcd400f677eb70cc8bde", path = set_file_path)
+
+file.exists("eds213_group8")
+```
+
