@@ -1,0 +1,11 @@
+---
+title: "Clarissa's Exploration"
+author: "Clarissa Boyajian"
+date: "10/13/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
