@@ -1,0 +1,7 @@
+"URL or identifier to the 
+data source",Short Data Description,"Date the data 
+was last accessed",Data Provider's Name (person or institution),Data Creator/Owner's Email/contact,"downloaded File location 
+(cloud drive, path on server; e.g. google drive link) ","Filename 
+(as stored on your Shared Drive)",Team member who got the data (email),"Used in your 
+analysis? (Y/N)"
+https://search.dataone.org/view/https%3A%2F%2Fpasta.lternet.edu%2Fpackage%2Fmetadata%2Feml%2Fedi%2F998%2F1,"Provides all data used for a lead risk assessment of North and West Philadelphia. This includes data on: lead-in-soil, land recycled sites, demolitions, housing code violations, age of housing, smelters, and elevated blood lead levels of children.",10/11/2021,Environmental Data Initiative,Hasibe Caballero-Gomez / hasibegomezs@g.ucla.edu,Local computer using DataOne API,"All data and metadata stored in ""Data"" folder within .Rproj",Each user should download data onto their local drive,Y
