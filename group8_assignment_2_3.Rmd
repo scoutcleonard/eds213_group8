@@ -21,14 +21,14 @@ library(here)
 **Note! If you have not run this Rmd on your local computer, run this code chunk initially to download data that is included in .gitignore (aka not stored on GitHub)!**
 ```{r Use Metajam to Download the Data, eval = FALSE}
 
-ownload_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/1/406b624e7e71dcd400f677eb70cc8bde", path = ".")
+download_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/1/406b624e7e71dcd400f677eb70cc8bde", path = ".", dir_name = "data")
 
 
 ```
 
 ```{r}
 #Get the dataframes 
-data_all <- read_d1_files(folder_path = "https_pasta.lternet.edu_package_metadata_eml_edi_998_1__All_Lead_Risk_Factors__csv")
+data_all <- read_d1_files(folder_path = "data")
 
 attribute_metadata <- data_all$attribute_metadata
 
