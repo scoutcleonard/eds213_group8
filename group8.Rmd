@@ -55,7 +55,7 @@ Sys.getenv("CENSUS_KEY")
 ```
 
 ```{r}
-census_data <- listCensusApis()
-View(census_data)
+apis <- listCensusApis()
+View(apis)
 ```
 
