@@ -43,4 +43,19 @@ In exploring DataONE, we were interested in environmental justice issues; we loo
 
 We downloaded the data and metadata using `metajam`. 
 
+```{r Use Census API to download data}
+# Add key to .Renviron
+Sys.setenv(CENSUS_KEY = "6d33d69d0552f3b9590804a3c2ab450d2f0ee5f5")
+
+# Reload .Renviron
+readRenviron(".Renviron")
+
+# Check to see that the expected key is output in your R console
+Sys.getenv("CENSUS_KEY")
+```
+
+```{r}
+census_data <- listCensusApis()
+View(census_data)
+```
 
