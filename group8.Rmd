@@ -28,16 +28,24 @@ download_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/
 
 ```
 
-```{r}
-#Get the dataframes 
+```{r Get Lead Dataframes}
+
+#load full data package using DataONE API
 lead_data_all <- read_d1_files(folder_path = "data")
 
+#pull lead metadata from full lead data package
 lead_attribute_metadata <- lead_data_all$attribute_metadata
 
+#pull metadata of the metadata
 lead_summary_metadata <- lead_data_all$summary_metadata
 
+
+#pull actual lead data and tidy
 lead_data <- lead_data_all$data %>% 
-  clean_names()
+  clean_names() %>% 
+  rename(tract = census_tracts)
+#convert tract data from numeric to character for join with census data below
+lead_data$tract <- as.character(lead_data$tract)
 
 ```
 
@@ -55,16 +63,19 @@ readRenviron(".Renviron")
 # Check to see that the expected key is output in your R console
 Sys.getenv("CENSUS_KEY")
 ```
-
+The step in the code chunk below helped us to look at the datasets in the census package and decise which we wanted to use with the lead data. 
 ```{r See all APIs}
-census_apis <- listCensusApis()
+#census_apis <- listCensusApis()
 ```
 
 ```{r Read in Census Data}
+
+#look at column headers in full census dataset
 census_metadata_variable <- listCensusMetadata(
     name = "pdb/tract", 
     vintage = "2021")
 
+#download census data through the API based on geography and variables of interest 
 census_data <- getCensus(
     name = "pdb/tract",
     vintage = 2021,
@@ -74,12 +85,17 @@ census_data <- getCensus(
     ) %>% 
   filter(county == 101) %>% 
   clean_names()
-```
 
+```
 
 ```{r Join Lead Data and Census Data }
 
+#left join lead data and census data by tract 
+lead_census_joined <- left_join(x = lead_data, y = census_data, by = "tract")
 
+```
+
+```{r Analysis}
 
 ```
 
