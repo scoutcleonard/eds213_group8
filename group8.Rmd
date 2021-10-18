@@ -54,8 +54,11 @@ readRenviron(".Renviron")
 Sys.getenv("CENSUS_KEY")
 ```
 
-```{r}
+```{r See all APIs}
 apis <- listCensusApis()
-View(apis)
+```
+
+```{r Read in Census Data}
+
 ```
 
