@@ -19,6 +19,6 @@ Potential dataset found on DataONE: https://search.dataone.org/view/https%3A%2F%
 
 *The DataONE repository for the data contains definitions for features of the dataset. Below is an example.* 
 
-**% Renter Occupied:** "The percent of housings units that are rented and occupied by a renter over the total number of housing units per census tract"
+**% Renter Occupied:** "The percent of housings units that are rented and occupied by a renter over the total number of housing units per census tract" This is the definition from DataONE; we would update this definition by including data source information. For example, this data is calculated from 2019 housing surveys from the American Community Survey's 2019 statistics. 
 
 
