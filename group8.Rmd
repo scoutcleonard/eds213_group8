@@ -29,13 +29,13 @@ download_d1_data(data_url = "https://pasta.lternet.edu/package/data/eml/edi/998/
 
 ```{r}
 #Get the dataframes 
-data_all <- read_d1_files(folder_path = "data")
+lead_data_all <- read_d1_files(folder_path = "data")
 
-attribute_metadata <- data_all$attribute_metadata
+lead_attribute_metadata <- lead_data_all$attribute_metadata
 
-summary_metadata <- data_all$summary_metadata
+lead_summary_metadata <- lead_data_all$summary_metadata
 
-data <- data_all$data
+lead_data <- lead_data_all$data
 
 ```
 
@@ -55,10 +55,18 @@ Sys.getenv("CENSUS_KEY")
 ```
 
 ```{r See all APIs}
-apis <- listCensusApis()
+census_apis <- listCensusApis()
 ```
 
 ```{r Read in Census Data}
+census_metadata_variable <- listCensusMetadata(
+    name = "pdb/tract", 
+    vintage = "2021")
 
+census_data <- getCensus(
+    name = "pdb/tract",
+    vars = c("Two_Plus_Health_Ins_ACS_15_19", "Pov_Univ_ACSMOE_15_19", "Civ_noninst_pop_U19_ACSMOE_15_19", "Children_in_Pov_ACSMOE_15_19", "NH_Blk_alone_CEN_2010", "pct_Children_in_Pov_ACSMOE_15_19", "Tract"), 
+    region = "county:101",
+    regionin = "state:42")
 ```
 
