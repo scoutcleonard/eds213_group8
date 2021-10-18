@@ -14,3 +14,11 @@ Potential dataset found on DataONE: https://search.dataone.org/view/https%3A%2F%
 3. We imagine this project will be a good resource throughout the duration of our Master of Environmental Data Science (MEDS) program. Therefore, we would like to preserve this data at least through December 2022 to be referred to for future projects and MEDS students. We will be preserving the data and our analysis code on The Knowledge Network for Biocomplexity (KNB).
 
 4. There no legal constraints. It is recommended that users of this data reach out to the creators of the package in order to prevent duplicate research.
+
+## Ontogeny
+
+*The DataONE repository for the data contains definitions for features of the dataset. Below is an example.* 
+
+**% Renter Occupied:** "The percent of housings units that are rented and occupied by a renter over the total number of housing units per census tract"
+
+
