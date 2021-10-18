@@ -65,8 +65,11 @@ census_metadata_variable <- listCensusMetadata(
 
 census_data <- getCensus(
     name = "pdb/tract",
+    vintage = 2021,
     vars = c("Two_Plus_Health_Ins_ACS_15_19", "Pov_Univ_ACSMOE_15_19", "Civ_noninst_pop_U19_ACSMOE_15_19", "Children_in_Pov_ACSMOE_15_19", "NH_Blk_alone_CEN_2010", "pct_Children_in_Pov_ACSMOE_15_19", "Tract"), 
-    region = "county:101",
-    regionin = "state:42")
+    region = "tract:*",
+    regionin = "state:42"
+    ) %>% 
+  filter(county == 101)
 ```
 
