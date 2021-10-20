@@ -2,7 +2,12 @@
 title: "Assignment 2.3"
 author: "Scout Leonard, Clarissa Boyajian, Alex Yousefivand"
 date: "10/11/2021"
-output: html_document
+output:
+  html_document:
+    theme: flatly
+    code_folding: hide
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -79,7 +84,7 @@ census_metadata_variable <- listCensusMetadata(
 census_data <- getCensus(
     name = "pdb/tract",
     vintage = 2021,
-    vars = c("pct_No_Health_Ins_ACS_15_19", "Pop_Disabled_ACS_15_19", "pct_Hispanic_ACS_15_19"), 
+    vars = c("pct_No_Health_Ins_ACS_15_19", "pct_Pop_Disabled_ACS_15_19", "pct_Hispanic_ACS_15_19"), 
     region = "tract:*",
     regionin = "state:42"
     ) %>% 
@@ -95,7 +100,58 @@ lead_census_joined <- left_join(x = lead_data, y = census_data, by = "tract")
 
 ```
 
-```{r Analysis}
+```{r Analysis Income-Soil Lead Plot}
+income_soil <- ggplot(data = lead_census_joined, aes(x = acs_median_income_2019, y = soil_400_ppm)) +
+  geom_point(color = "dodgerblue4") +
+  labs(title = "Philadelphia Patterns in Census Tract Soil Lead Levels by Income",
+       x = "2019 Median Income",
+       y = "Total Number Hazardous Soil Points (>400ppm)") +
+  theme_minimal()
 
+income_soil
 ```
 
+```{r Analysis Race-Soil Lead Plot}
+race_soil <- ggplot(data = lead_census_joined, aes(x = percent_minority_population, y = soil_400_ppm)) +
+  geom_point(color = "dodgerblue4") +
+  labs(title = "Philadelphia Patterns in Census Tract Soil Lead Levels by Race",
+       x = "Percent Population Minority",
+       y = "Total Number Hazardous Soil Points (>400ppm)") +
+  theme_minimal()
+
+race_soil
+```
+
+```{r Analysis Income-EBLL Plot}
+income_ebll <- ggplot(data = lead_census_joined, aes(x = acs_median_income_2019, y = number_of_children_with_ebll_2015)) +
+  geom_point(color = "dodgerblue4") +
+  labs(title = "Philadelphia Patterns in Census Tract Soil Lead Levels by Income",
+       x = "2019 Median Income",
+       y = "Number of Children with Elevated Blood Lead Levels") +
+  theme_minimal()
+
+income_ebll
+```
+
+```{r Analysis Race-EBLL Plot}
+race_ebll <- ggplot(data = lead_census_joined, aes(x = percent_minority_population, y = number_of_children_with_ebll_2015)) +
+  geom_point(color = "dodgerblue4") +
+  labs(title = "Philadelphia Patterns in Census Tract Soil Lead Levels by Income",
+       x = "Percent Population Minority",
+       y = "Number of Children with Elevated Blood Lead Levels") +
+  theme_minimal()
+
+race_ebll
+```
+
+```{r Analysis Ability-EBLL Plot}
+ability_ebll <- ggplot(data = lead_census_joined, aes(x = pct_pop_disabled_acs_15_19, y = number_of_children_with_ebll_2015)) +
+  geom_point(color = "dodgerblue4") +
+  labs(title = "Philadelphia Patterns in Census Tract Soil Lead Levels by Income",
+       x = "Percent Population Disabled",
+       y = "Number of Children with Elevated Blood Lead Levels") +
+  theme_minimal()
+
+ability_ebll
+
+```
