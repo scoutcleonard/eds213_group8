@@ -22,7 +22,7 @@ library(here)
 library(censusapi)
 library(janitor)
 ```
-## Retieve data using an API
+## Retieve lead data using an API
 
 
 **Note! If you have not run this Rmd on your local computer, run this code chunk initially to download data that is included in .gitignore (aka not stored on GitHub)!**
@@ -48,7 +48,9 @@ lead_summary_metadata <- lead_data_all$summary_metadata
 #pull actual lead data and tidy
 lead_data <- lead_data_all$data %>% 
   clean_names() %>% 
-  rename(tract = census_tracts)
+  rename(tract = census_tracts) %>% 
+  mutate(tract = paste0(0, tract))
+
 #convert tract data from numeric to character for join with census data below
 lead_data$tract <- as.character(lead_data$tract)
 
@@ -57,6 +59,8 @@ lead_data$tract <- as.character(lead_data$tract)
 In exploring DataONE, we were interested in environmental justice issues; we looked for data that may be able to answer an environmental justice question. We found that there were several datasets describing environmental and health conditions of Philadelphia neighborhoods. This dataset is one example. Specifically, it gives demographic information in addition to various potential lead poisoning risk factors. 
 
 We downloaded the data and metadata using `metajam`. 
+
+## Retrieve census data using an API
 
 ```{r Use Census API to download data}
 # Add key to .Renviron
@@ -93,12 +97,16 @@ census_data <- getCensus(
 
 ```
 
+## Join lead and census data by tract
+
 ```{r Join Lead Data and Census Data }
 
 #left join lead data and census data by tract 
 lead_census_joined <- left_join(x = lead_data, y = census_data, by = "tract")
 
 ```
+
+## Explore patterns between human demographics and lead contamination levels
 
 ```{r Analysis Income-Soil Lead Plot}
 income_soil <- ggplot(data = lead_census_joined, aes(x = acs_median_income_2019, y = soil_400_ppm)) +
@@ -153,5 +161,15 @@ ability_ebll <- ggplot(data = lead_census_joined, aes(x = pct_pop_disabled_acs_1
   theme_minimal()
 
 ability_ebll
+```
 
+```{r Analysis Ability-Soil Plot}
+ability_soil <- ggplot(data = lead_census_joined, aes(x = pct_pop_disabled_acs_15_19, y = soil_400_ppm)) +
+  geom_point(color = "dodgerblue4") +
+  labs(title = "Philadelphia Patterns in Census Tract Soil Lead Levels by Income",
+       x = "Percent Population Disabled",
+       y = "Total Number Hazardous Soil Points (>400ppm)") +
+  theme_minimal()
+
+ability_soil
 ```
