@@ -15,7 +15,7 @@ Potential dataset found on DataONE: https://search.dataone.org/view/https%3A%2F%
 
 4. There no legal constraints. It is recommended that users of this data reach out to the creators of the package in order to prevent duplicate research.
 
-## Ontogeny
+## Ontology
 
 *The DataONE repository for the data contains definitions for features of the dataset. Below is an example.* 
 
