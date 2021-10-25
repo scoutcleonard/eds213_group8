@@ -23,7 +23,7 @@ library(xaringan)
 
 ---
 
-#[Data Management Plan](https://github.com/scoutcleonard/eds213_group8)
+#Data Management Plan
 
 - **Data managers:** Alex Vand, Clarissa Boyajian, and Scout Leonard
 - **Repository owner:** Scout Leonard (Clarissa and Alex are collaborators)
@@ -34,11 +34,17 @@ library(xaringan)
 - No legal constraints. 
 
 ---
+
 #Obtaining and Merging Data
 
---- 
-#Interesting Results 
+---
 
---- 
-#Find us on KNB and Github! 
+#Results
 
+---
+
+#Data Preservation: KNB
+
+---
+
+##Data Preservation: Github Repo
