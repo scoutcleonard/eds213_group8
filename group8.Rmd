@@ -22,7 +22,7 @@ library(here)
 library(censusapi)
 library(janitor)
 ```
-## Retieve lead data using an API
+## Retrieve lead data using an API
 
 
 **Note! If you have not run this Rmd on your local computer, run this code chunk initially to download data that is included in .gitignore (aka not stored on GitHub)!**
@@ -72,9 +72,9 @@ readRenviron(".Renviron")
 # Check to see that the expected key is output in your R console
 Sys.getenv("CENSUS_KEY")
 ```
-The step in the code chunk below helped us to look at the datasets in the census package and decise which we wanted to use with the lead data. 
-```{r See all APIs}
-#census_apis <- listCensusApis()
+The step in the code chunk below helped us to look at the datasets in the census package and decide which we wanted to use with the lead data. 
+```{r See all APIs, eval = FALSE}
+census_apis <- listCensusApis()
 ```
 
 ```{r Read in Census Data}
@@ -99,11 +99,8 @@ census_data <- getCensus(
 
 ## Join lead and census data by tract
 
-```{r Join Lead Data and Census Data }
-
-#left join lead data and census data by tract 
+```{r Join Lead Data and Census Data}
 lead_census_joined <- left_join(x = lead_data, y = census_data, by = "tract")
-
 ```
 
 ## Explore patterns between human demographics and lead contamination levels
