@@ -173,3 +173,10 @@ ability_soil <- ggplot(data = lead_census_joined, aes(x = pct_pop_disabled_acs_1
 
 ability_soil
 ```
+
+## Saving data as CSV for posting on KNB
+```{r}
+write.csv(lead_census_joined, "Lead_Risk_")
+
+```
+
