@@ -138,6 +138,19 @@ income_ebll <- ggplot(data = lead_census_joined, aes(x = acs_median_income_2019,
 income_ebll
 ```
 
+```{r Linear regression with winsorization}
+median_income_95 <- quantile(lead_census_joined$acs_median_income_2019, probs = 0.95, na.rm = TRUE)
+
+lead_census_joined <- lead_census_joined %>% 
+  mutate(income_winsor = case_when(acs_median_income_2019 >= median_income_95 ~ median_income_95,
+                                   acs_median_income_2019 < median_income_95 ~ acs_median_income_2019))
+
+model <- lm(number_of_children_with_ebll_2015 ~ income_winsor,
+            data = lead_census_joined)
+model %>% summary()
+```
+
+
 ```{r Analysis Race-EBLL Plot}
 race_ebll <- ggplot(data = lead_census_joined, aes(x = percent_minority_population, y = number_of_children_with_ebll_2015)) +
   geom_point(color = "dodgerblue4") +
@@ -176,4 +189,6 @@ ability_soil
 write.csv(lead_census_joined, "data/Lead_Risk_Factos_Census_Data.csv", row.names = TRUE)
 
 ```
+
+## Future research
 
