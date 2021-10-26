@@ -191,4 +191,4 @@ write.csv(lead_census_joined, "data/Lead_Risk_Factos_Census_Data.csv", row.names
 ```
 
 ## Future research
-
+This analysis focuses on visually exploring the relationships between various census demographics, lead risk factors, and resulting health impacts. For our exploration of median income compared to elevated blood lead levels in children (EBLL), we winsorized the median income to control for large outliers. We then ran a linear regression, which showed that only 5% of variation in EBLL was explained by median income. For future analysis, we would recommend comparing multiple socioeconomic factors to individual lead risk factors or resulting health impacts as this would better show the complicated nature of how these various factors interact with each other. 
