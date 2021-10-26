@@ -3,7 +3,7 @@
   <head>
     <title>Group 8 Presentation</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Scout Leonard" />
+    <meta name="author" content="Alex Vand, Clarissa Boyajian, Scout Leonard" />
     <meta name="date" content="2021-10-25" />
     <script src="group8_presentation_files/header-attrs-2.10/header-attrs.js"></script>
     <link href="group8_presentation_files/remark-css-0.0.1/default.css" rel="stylesheet" />
@@ -14,7 +14,7 @@
 class: center, middle, inverse, title-slide
 
 # Group 8 Presentation
-### Scout Leonard
+### Alex Vand, Clarissa Boyajian, Scout Leonard
 ### 10/25/2021
 
 ---
@@ -23,9 +23,6 @@ class: center, middle, inverse, title-slide
 
 
 
-```r
-library(xaringan)
-```
 
 #Our Question
 
@@ -52,8 +49,8 @@ library(xaringan)
 
 - Data Retrieval
   - Public Health/Lead Data: `metajam` package
-    - This uses an API to download the DataONE
-    - This creates the `metajam` log; stashed in out `.gitignore`
+    - This uses an API to download the DataONE data
+    - This creates the `metajam` log; stashed in our `.gitignore`
   - Census/demographic data: `censusapi` package
     - Requires an access token to control server traffic
     - `censusapi` package restricted us from pulling based on 1 county; we downloaded all of the data from state 42 before filtering
@@ -61,18 +58,43 @@ library(xaringan)
   - Left joined datasets based on census tract
   - Census tract format required cleaning in lead dataset
 
+&lt;img src="images/gitignore_image.png" width="2568" /&gt;
+
+
 
 ---
 
-#Results
+#Analysis and Results
+
+- Winsorized to control for outliers
+- OLS results showing 5% variation in EBLL is explained by median income
+
+
+```r
+median_income_95 &lt;- quantile(
+  lead_census_joined$acs_median_income_2019,
+  probs = 0.95, na.rm = TRUE)
+
+lead_census_joined &lt;- lead_census_joined %&gt;% 
+  mutate(income_winsor = case_when(
+    acs_median_income_2019 &gt;= median_income_95 ~ median_income_95,
+    acs_median_income_2019 &lt; median_income_95 ~ acs_median_income_2019))
+
+model &lt;- lm(number_of_children_with_ebll_2015 ~ income_winsor,
+            data = lead_census_joined)
+model %&gt;% summary()
+```
 
 ---
 
-#Data Preservation: KNB
+#Future Analysis
+
+
+For future analysis, we would recommend comparing multiple socioeconomic factors to individual lead risk factors or resulting health impacts as this would better show the complicated nature of how these various factors interact with each other.
 
 ---
 
-##Data Preservation: Github Repo
+##Data Preservation: KNB and Github
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
