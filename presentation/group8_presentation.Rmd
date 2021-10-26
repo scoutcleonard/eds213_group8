@@ -1,7 +1,7 @@
 ---
 title: "Group 8 Presentation"
 author: "Alex Vand, Clarissa Boyajian, Scout Leonard"
-date: "10/25/2021"
+date: "2021/10/27"
 output: 
  xaringan::moon_reader
 ---
@@ -21,6 +21,10 @@ library(xaringan)
 - Developed from an interest in an EJ question
 - DataONE had environmental health data for this question specifically from a 2021 published study 
 
+```{r, echo=FALSE}
+knitr::include_graphics("images/philly_map.png", dpi = 150)
+```
+
 ---
 
 #Data Management Plan
@@ -32,6 +36,10 @@ library(xaringan)
   - Code to call/clean/combine data in our repo
 - **Preservation plan:** We plan to save until the end of MEDS!
 - No legal constraints. 
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/Octocat.png", dpi = 200)
+```
 
 ---
 
@@ -58,8 +66,15 @@ knitr::include_graphics("images/gitignore_image.png")
 
 #Analysis and Results
 
+```{r, echo=FALSE}
+knitr::include_graphics("images/ebll_vs_income_plot.png")
+```
+
+---
+
+#Analysis and Results
+
 - Winsorized to control for outliers
-- OLS results showing 5% variation in EBLL is explained by median income
 
 ```{r Linear regression with winsorization, eval=FALSE}
 median_income_95 <- quantile(
@@ -68,8 +83,10 @@ median_income_95 <- quantile(
 
 lead_census_joined <- lead_census_joined %>% 
   mutate(income_winsor = case_when(
-    acs_median_income_2019 >= median_income_95 ~ median_income_95,
-    acs_median_income_2019 < median_income_95 ~ acs_median_income_2019))
+    acs_median_income_2019 >= median_income_95 ~ 
+      median_income_95,
+    acs_median_income_2019 < median_income_95 ~ 
+      acs_median_income_2019))
 
 model <- lm(number_of_children_with_ebll_2015 ~ income_winsor,
             data = lead_census_joined)
@@ -78,11 +95,40 @@ model %>% summary()
 
 ---
 
+#Analysis and Results
+
+- OLS results showing 5% variation in EBLL is explained by median income
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/ols_results_image.png", dpi = 150)
+```
+
+---
+
 #Future Analysis
 
+- Compare **multiple socioeconomic factors** to individual lead risk factors or resulting health impacts
+- Spatial visualization of these variables
+- The real world is more complicated! 
 
-For future analysis, we would recommend comparing multiple socioeconomic factors to individual lead risk factors or resulting health impacts as this would better show the complicated nature of how these various factors interact with each other.
+```{r, echo=FALSE}
+knitr::include_graphics("images/variables_image.png", dpi = 150)
+```
 
 ---
 
 ##Data Preservation: KNB and Github
+
+- GitHub
+  - ReadMe with Data Management Plan
+  - Code to call original datasets
+  - Code for combining datasets 
+  - Analyses
+- KNB
+  - Our final combined dataset in .csv format
+  - Metadata for our combined dataset 
+  - Our contact info and Orcid IDs
+  
+```{r, echo=FALSE}
+knitr::include_graphics("images/knb.png")
+```

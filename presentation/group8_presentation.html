@@ -4,7 +4,6 @@
     <title>Group 8 Presentation</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alex Vand, Clarissa Boyajian, Scout Leonard" />
-    <meta name="date" content="2021-10-25" />
     <script src="group8_presentation_files/header-attrs-2.10/header-attrs.js"></script>
     <link href="group8_presentation_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="group8_presentation_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
@@ -15,7 +14,7 @@ class: center, middle, inverse, title-slide
 
 # Group 8 Presentation
 ### Alex Vand, Clarissa Boyajian, Scout Leonard
-### 10/25/2021
+### 2021/10/27
 
 ---
 
@@ -31,6 +30,8 @@ class: center, middle, inverse, title-slide
 - Developed from an interest in an EJ question
 - DataONE had environmental health data for this question specifically from a 2021 published study 
 
+&lt;img src="images/philly_map.png" width="864" /&gt;
+
 ---
 
 #Data Management Plan
@@ -42,6 +43,8 @@ class: center, middle, inverse, title-slide
   - Code to call/clean/combine data in our repo
 - **Preservation plan:** We plan to save until the end of MEDS!
 - No legal constraints. 
+
+&lt;img src="images/Octocat.png" width="384" /&gt;
 
 ---
 
@@ -66,8 +69,13 @@ class: center, middle, inverse, title-slide
 
 #Analysis and Results
 
+&lt;img src="images/ebll_vs_income_plot.png" width="2361" /&gt;
+
+---
+
+#Analysis and Results
+
 - Winsorized to control for outliers
-- OLS results showing 5% variation in EBLL is explained by median income
 
 
 ```r
@@ -77,8 +85,10 @@ median_income_95 &lt;- quantile(
 
 lead_census_joined &lt;- lead_census_joined %&gt;% 
   mutate(income_winsor = case_when(
-    acs_median_income_2019 &gt;= median_income_95 ~ median_income_95,
-    acs_median_income_2019 &lt; median_income_95 ~ acs_median_income_2019))
+    acs_median_income_2019 &gt;= median_income_95 ~ 
+      median_income_95,
+    acs_median_income_2019 &lt; median_income_95 ~ 
+      acs_median_income_2019))
 
 model &lt;- lm(number_of_children_with_ebll_2015 ~ income_winsor,
             data = lead_census_joined)
@@ -87,14 +97,37 @@ model %&gt;% summary()
 
 ---
 
+#Analysis and Results
+
+- OLS results showing 5% variation in EBLL is explained by median income
+
+&lt;img src="images/ols_results_image.png" width="659" /&gt;
+
+---
+
 #Future Analysis
 
+- Compare **multiple socioeconomic factors** to individual lead risk factors or resulting health impacts
+- Spatial visualization of these variables
+- The real world is more complicated! 
 
-For future analysis, we would recommend comparing multiple socioeconomic factors to individual lead risk factors or resulting health impacts as this would better show the complicated nature of how these various factors interact with each other.
+&lt;img src="images/variables_image.png" width="795" /&gt;
 
 ---
 
 ##Data Preservation: KNB and Github
+
+- GitHub
+  - ReadMe with Data Management Plan
+  - Code to call original datasets
+  - Code for combining datasets 
+  - Analyses
+- KNB
+  - Our final combined dataset in .csv format
+  - Metadata for our combined dataset 
+  - Our contact info and Orcid IDs
+  
+&lt;img src="images/knb.png" width="3824" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
