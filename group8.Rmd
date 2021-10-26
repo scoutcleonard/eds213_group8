@@ -151,7 +151,7 @@ model %>% summary()
 ```
 
 ```{r}
-ggsave()
+ggsave(filename = "ebll_vs_income_plot.png", plot = income_ebll, path = "presentation/images/")
 ```
 
 
