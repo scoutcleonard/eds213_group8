@@ -50,6 +50,18 @@ library(xaringan)
 
 #Obtaining and Merging Data
 
+- Data Retrieval
+  - Public Health/Lead Data: `metajam` package
+    - This uses an API to download the DataONE
+    - This creates the `metajam` log; stashed in out `.gitignore`
+  - Census/demographic data: `censusapi` package
+    - Requires an access token to control server traffic
+    - `censusapi` package restricted us from pulling based on 1 county; we downloaded all of the data from state 42 before filtering
+- Data Combination
+  - Left joined datasets based on census tract
+  - Census tract format required cleaning in lead dataset
+
+
 ---
 
 #Results
