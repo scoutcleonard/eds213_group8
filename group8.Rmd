@@ -185,7 +185,7 @@ ability_soil
 ```
 
 ## Saving data as CSV for posting on KNB
-```{r}
+```{r, eval=FALSE}
 write.csv(lead_census_joined, "data/Lead_Risk_Factos_Census_Data.csv", row.names = TRUE)
 
 ```
