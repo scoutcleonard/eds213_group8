@@ -150,6 +150,11 @@ model <- lm(number_of_children_with_ebll_2015 ~ income_winsor,
 model %>% summary()
 ```
 
+```{r}
+ggsave()
+```
+
+
 
 ```{r Analysis Race-EBLL Plot}
 race_ebll <- ggplot(data = lead_census_joined, aes(x = percent_minority_population, y = number_of_children_with_ebll_2015)) +
