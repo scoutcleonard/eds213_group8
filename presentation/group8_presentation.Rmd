@@ -57,7 +57,7 @@ knitr::include_graphics("images/Octocat.png", dpi = 200)
   - Census tract format required cleaning in lead dataset
 
 ```{r, echo=FALSE}
-knitr::include_graphics("images/gitignore_image.png")
+knitr::include_graphics("images/gitignore_image.png", dpi = 200)
 ```
 
 
